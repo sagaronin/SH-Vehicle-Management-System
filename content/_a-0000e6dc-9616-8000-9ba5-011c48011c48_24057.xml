@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_24376</versionUuid>
+    <rule>
+        <name>SH_VM_AddOrUpdateVehicle</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_24057</uuid>
+        <description>Interface for adding or updating existing vehicle data</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23736</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!addedBy:if(
+    isnull(ri!sh_df_vm_vehicles.addedBy),
+    loggedInUser(),
+    ri!sh_df_vm_vehicles.addedBy
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Add or Update Vehicle",
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Make",
+                labelPosition: "ABOVE",
+                value: ri!sh_df_vm_vehicles.make,
+                saveInto: ri!sh_df_vm_vehicles.make,
+                characterLimit: 50,
+                required: true,
+                requiredMessage: "Please enter a value for make of vehicle"
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Model",
+                labelPosition: "ABOVE",
+                value: ri!sh_df_vm_vehicles.model,
+                saveInto: ri!sh_df_vm_vehicles.model,
+                characterLimit: 50,
+                required: true,
+                requiredMessage: "Please enter a value for model of vehicle"
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Added By",
+                labelPosition: "ABOVE",
+                groupFilter: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24051",
+                value: local!addedBy,
+                saveInto: local!addedBy,
+                disabled: not(
+                  isnull(
+                    ri!sh_df_vm_vehicles.vehicleId
+                  )
+                ),
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Vin",
+                labelPosition: "ABOVE",
+                value: ri!sh_df_vm_vehicles.vin,
+                saveInto: ri!sh_df_vm_vehicles.vin,
+                characterLimit: 50
+              )
+
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24235"(ri!sh_df_vm_vehicles),
+              #"SYSTEM_SYSRULES_fileUploadField_v1"(
+                label: "Vehicle Image",
+                labelPosition: "ABOVE",
+                target: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24045",
+                value: ri!sh_df_vm_vehicles.imageId,
+                saveInto: ri!sh_df_vm_vehicles.imageId,
+                required: true,
+                requiredMessage: "Please upload the vehicle image(s)",
+                validations: {}
+              )
+            }
+          )
+        }
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Submit",
+          value: local!addedBy,
+          saveInto: ri!sh_df_vm_vehicles.addedBy,
+          submit: true,
+          style: "PRIMARY"
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Cancel",
+          value: true,
+          saveInto: ri!cancel,
+          submit: true,
+          style: "NORMAL",
+          validate: false
+        )
+      }
+    )
+  )
+)
+
+</definition>
+        <namedTypedValue>
+            <name>sh_df_vm_vehicles</name>
+            <type>
+                <name>sh_df_vm_vehicles</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types}sh_df_vm_vehicles'()</a:value>
+                    <a:nameRef>sh_df_vm_vehicles</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>cancel</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_24376"/>
+    </history>
+</contentHaul>

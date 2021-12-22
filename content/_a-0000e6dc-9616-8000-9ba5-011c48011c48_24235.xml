@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_24337</versionUuid>
+    <rule>
+        <name>SH_VM_VehicleDetails</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_24235</uuid>
+        <description>This is an interface created to fetch the vehicle details</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23736</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_boxLayout"(
+  label: "Details",
+  contents: {
+    #"SYSTEM_SYSRULES_sideBySideLayout"(
+      items: {
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_integerField"(
+            label: "Year Built",
+            labelPosition: "ABOVE",
+            value: ri!SH_VM_Vehicle.yearBuilt,
+            saveInto: ri!SH_VM_Vehicle.yearBuilt,
+            required: true,
+            requiredMessage: "Please enter the value for year built of vehicle"
+          )
+        ),
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_integerField"(
+            label: "Mileage",
+            labelPosition: "ABOVE",
+            value: ri!SH_VM_Vehicle.mileage,
+            saveInto: ri!SH_VM_Vehicle.mileage,
+            required: true,
+            requiredMessage: "Please enter the value for mileage of vehicle"
+          )
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sideBySideLayout"(
+      items: {
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_textField"(
+            label: "Color",
+            labelPosition: "ABOVE",
+            value: ri!SH_VM_Vehicle.color,
+            saveInto: ri!SH_VM_Vehicle.color,
+            characterLimit: 50
+          )
+        ),
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_dropdownField_v1"(
+            label: "Type",
+            labelPosition: "ABOVE",
+            placeholder: "--- Select a Value ---",
+            choiceLabels: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24032",
+            choiceValues: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24032",
+            value: ri!SH_VM_Vehicle.type,
+            saveInto: ri!SH_VM_Vehicle.type,
+            searchDisplay: "AUTO",
+            validations: {}
+          )
+        )
+      }
+    )
+  },
+  style: "#4a2e4a",
+  marginBelow: "STANDARD"
+)</definition>
+        <namedTypedValue>
+            <name>SH_VM_Vehicle</name>
+            <type>
+                <name>sh_df_vm_vehicles</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_24337"/>
+    </history>
+</contentHaul>

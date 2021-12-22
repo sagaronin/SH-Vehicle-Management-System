@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_51282</versionUuid>
+    <rule>
+        <name>SH_VM_Grouped_Vehicle_Maintenance_ROView</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_51264</uuid>
+        <description>This is a consolidated vehicle maintenance RO view for the specific vehicle</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23736</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_gridField_v1"(
+    label: "Maintenance History",
+    labelPosition: "ABOVE",
+    data: #"SYSTEM_SYSRULES_recordData"(
+      recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+      filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+        operator: "AND",
+        filters: {
+          #"SYSTEM_SYSRULES_queryFilter"(
+            field: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/6e1c3678-fe7a-4566-a353-ba6bf20fdbad",
+            operator: "=",
+            value: ri!vehicleId
+          )
+        },
+        ignoreFiltersWithEmptyValues: true
+      )
+    ),
+    columns: {
+      #"SYSTEM_SYSRULES_gridColumn"(
+        label: "Cost",
+        sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/a8bac7b3-39f1-4f2e-9b55-d96e79a633e1",
+        value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/a8bac7b3-39f1-4f2e-9b55-d96e79a633e1"],
+        align: "END"
+      ),
+      #"SYSTEM_SYSRULES_gridColumn"(
+        label: "Service Type",
+        sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/187c5d2e-e5af-46a2-8e94-3f0091c004e9",
+        value: #"SYSTEM_SYSRULES_linkField"(
+          links: {
+            #"SYSTEM_SYSRULES_recordLink"(
+              label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/187c5d2e-e5af-46a2-8e94-3f0091c004e9"],
+              recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+              identifier: fv!identifier
+            )
+          }
+        ),
+        align: "START"
+      ),
+      #"SYSTEM_SYSRULES_gridColumn"(
+        label: "Request Added On",
+        sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/f26a9b6f-4eee-4497-8df1-b955385ff517",
+        value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/f26a9b6f-4eee-4497-8df1-b955385ff517"],
+        align: "START"
+      ),
+      #"SYSTEM_SYSRULES_gridColumn"(
+        label: "Make, Model, Year",
+        value: #"SYSTEM_SYSRULES_linkField"(
+          links: {
+            #"SYSTEM_SYSRULES_recordLink"(
+              label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/32f47faa-e26a-42a4-8b8c-c2f181e44f67"],
+              recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+              identifier: fv!identifier
+            ),
+            #"SYSTEM_SYSRULES_recordLink"(
+              label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/a8c555c0-2c2d-407a-8f01-4a38440a227d"],
+              recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+              identifier: fv!identifier
+            ),
+            #"SYSTEM_SYSRULES_recordLink"(
+              label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/f5cbf3b9-efe3-4477-9820-18a07103700b"],
+              recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+              identifier: fv!identifier
+            )
+          }
+        )
+      ),
+      #"SYSTEM_SYSRULES_gridColumn"(
+        label: "Mechanic Name",
+        sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/c368442d-6677-4f63-905c-ef341919d730",
+        value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/c368442d-6677-4f63-905c-ef341919d730"],
+        align: "START"
+      )
+    },
+    validations: {},
+    refreshAfter: "RECORD_ACTION",
+    showSearchBox: true,
+    showRefreshButton: true
+  )
+}</definition>
+        <namedTypedValue>
+            <name>vehicleId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_51282"/>
+    </history>
+</contentHaul>

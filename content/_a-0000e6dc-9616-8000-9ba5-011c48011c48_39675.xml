@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_39886</versionUuid>
+    <rule>
+        <name>SH_VM_TasksReport</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_39675</uuid>
+        <description>This is an interface to define how the report will look</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23809</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!statusFilter: null,
+  local!taskStatuses: {
+    "Assigned",
+    "Accepted",
+    "Completed",
+    "Not Started",
+    "Cancelled",
+    "Paused",
+    "Unattended",
+    "Aborted",
+    "Cancelled By Exception",
+    "Submitted",
+    "Running",
+    "Error"
+  },
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_dropdownField_v1"(
+        label: "Status",
+        placeholder: "Pick a status",
+        choiceLabels: {
+          "Assigned",
+          "Accepted",
+          "Completed",
+          "Not Started"
+        },
+        choiceValues: enumerate(4),
+        value: local!statusFilter,
+        saveInto: local!statusFilter
+      ),
+      #"SYSTEM_SYSRULES_gridField_v1"(
+        label: "My Tasks",
+        instructions: "A list of all tasks for the current user",
+        labelPosition: "ABOVE",
+        data: a!queryProcessAnalytics(
+          report: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_39656",
+          query: #"SYSTEM_SYSRULES_query"(
+            pagingInfo: fv!pagingInfo,
+            filter: #"SYSTEM_SYSRULES_queryFilter"(
+              field: "c5",
+              operator: "=",
+              value: local!statusFilter,
+              applyWhen: not(isnull(local!statusFilter))
+            )
+          )
+        ),
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Name",
+            sortField: "c0",
+            /*value: fv!row.c0,*/
+            value: #"SYSTEM_SYSRULES_linkField"(
+              links: #"SYSTEM_SYSRULES_processTaskLink"(label: fv!row.c0, task: fv!identifier)
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Process",
+            sortField: "c3",
+            value: fv!row.c3
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Status",
+            sortField: "c5",
+            value: fv!row.c5
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Deadline",
+            sortField: "c7",
+            value: fv!row.c7
+          )
+        },
+        rowHeader: 1
+      )
+    }
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_39886"/>
+    </history>
+</contentHaul>

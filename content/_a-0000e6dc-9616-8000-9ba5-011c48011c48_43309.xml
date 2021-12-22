@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_67665</versionUuid>
+    <rule>
+        <name>SH_VM_Vehicle_Service_SummaryView</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_43309</uuid>
+        <description>This is an interface for vehicle service summary view</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23809</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!reqServicedBy: if(
+    isnull(ri!vehicle_maintenance.reqServiceBy),
+    loggedInUser(),
+    ri!vehicle_maintenance.reqServiceBy
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Complete Maintenance Request",
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Vehicle and Maintenance Details",
+        contents: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_23741"(
+          #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_20493"(ri!vehicle_maintenance.vehicleid)
+        )
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Request Details",
+        contents: {
+          #"SYSTEM_SYSRULES_sideBySideLayout"(
+            items: {
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_textField"(
+                  label: "Service Type",
+                  labelPosition: "ABOVE",
+                  value: ri!vehicle_maintenance.serviceType,
+                  refreshAfter: "UNFOCUS",
+                  readOnly: true,
+                  validations: {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_textField"(
+                  label: "Request Added By",
+                  labelPosition: "ABOVE",
+                  value: ri!vehicle_maintenance.reqAddedBy,
+                  saveInto: ri!vehicle_maintenance.reqAddedBy,
+                  refreshAfter: "UNFOCUS",
+                  readOnly: true,
+                  validations: {}
+                )
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            label: "Maintenance Description",
+            labelPosition: "ABOVE",
+            value: ri!vehicle_maintenance.description,
+            saveInto: ri!vehicle_maintenance.description,
+            refreshAfter: "UNFOCUS",
+            height: "MEDIUM",
+            readOnly: true,
+            validations: {}
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Maintenance Details",
+        contents: {
+          #"SYSTEM_SYSRULES_sideBySideLayout"(
+            items: {
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_integerField"(
+                  label: "Cost",
+                  labelPosition: "ABOVE",
+                  value: ri!vehicle_maintenance.cost,
+                  saveInto: ri!vehicle_maintenance.cost,
+                  refreshAfter: "UNFOCUS",
+                  required: true,
+                  requiredMessage: "Please Enter Amount",
+                  masked: false,
+                  validations: {
+                    if(
+                      ri!vehicle_maintenance.cost &lt; 0,
+                      "You must enter positive integer only",
+                      ""
+                    )
+                  }
+                )
+              ),
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_textField"(
+                  label: "Maintenance Comments",
+                  labelPosition: "ABOVE",
+                  value: ri!vehicle_maintenance.mechanicComments,
+                  saveInto: ri!vehicle_maintenance.mechanicComments,
+                  refreshAfter: "UNFOCUS",
+                  validations: {}
+                )
+              )
+            }
+          )
+        }
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Submit",
+          value: local!reqServicedBy,
+          saveInto: { ri!vehicle_maintenance.reqServiceBy,
+          a!save(
+            target: ri!vehicle_maintenance.cost,
+            value: ri!vehicle_maintenance.cost
+          ),
+          a!save(
+            target: ri!vehicle_maintenance.mechanicComments,
+            value: ri!vehicle_maintenance.mechanicComments
+          )
+          },
+          submit: true,
+          style: "PRIMARY",
+          loadingIndicator: true
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Cancel",
+          value: true,
+          saveInto: {},
+          submit: true,
+          style: "NORMAL",
+          validate: false
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>vehicle_maintenance</name>
+            <type>
+                <name>sh_df_vm_vehicle_maintenance</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000e6dc-9616-8000-9ba5-011c48011c48_20493"(1)</a:value>
+                    <a:nameRef>vehicle_maintenance</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_67665"/>
+    </history>
+</contentHaul>

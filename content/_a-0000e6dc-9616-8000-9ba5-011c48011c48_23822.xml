@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_43787</versionUuid>
+    <rule>
+        <name>SH_VM_GetVehicleTitle</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23822</uuid>
+        <description>This is rule to get the vehicle title by passing in vehicle id as input</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_19605</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>tostring(
+  #"SYSTEM_SYSRULES_queryRecordType_v1"(
+    recordType: #"urn:appian:record-type:v1:8fc17093-0b29-46c3-90d9-3265070b5c85",
+    fields: {
+      #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/32f47faa-e26a-42a4-8b8c-c2f181e44f67",
+      #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/a8c555c0-2c2d-407a-8f01-4a38440a227d",
+      #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/f5cbf3b9-efe3-4477-9820-18a07103700b"
+    },
+    filters: #"SYSTEM_SYSRULES_queryFilter"(
+      field: #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/6e1c3678-fe7a-4566-a353-ba6bf20fdbad",
+      operator: "=",
+      value: ri!givenId
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 1)
+  ).data
+)</definition>
+        <namedTypedValue>
+            <name>givenId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_43787"/>
+    </history>
+</contentHaul>

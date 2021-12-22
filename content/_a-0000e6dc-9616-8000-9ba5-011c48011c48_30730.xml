@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_31369</versionUuid>
+    <rule>
+        <name>SH_Vehicle_Distribution_By_Type</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_30730</uuid>
+        <description>This is interface for showing report</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23736</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_columnChartField"(
+    data: #"urn:appian:record-type:v1:8fc17093-0b29-46c3-90d9-3265070b5c85",
+    config: #"SYSTEM_SYSRULES_columnChartConfig"(
+      primaryGrouping: #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/c3c0eafe-e3a4-4058-9dbf-bdd2d0401466",
+        alias: "type_primaryGrouping"
+      ),
+      measures: {
+        #"SYSTEM_SYSRULES_measure"(
+          function: "COUNT",
+          field: #"urn:appian:record-field:v1:8fc17093-0b29-46c3-90d9-3265070b5c85/6e1c3678-fe7a-4566-a353-ba6bf20fdbad",
+          alias: "vehicleId_count_measure1"
+        )
+      },
+      dataLimit: 100
+    ),
+    label: "Distribution of Vehicles by Type",
+    stacking: "NONE",
+    showLegend: true,
+    showTooltips: true,
+    labelPosition: "ABOVE",
+    colorScheme: "RAINFOREST",
+    height: "MEDIUM",
+    xAxisStyle: "STANDARD",
+    yAxisStyle: "STANDARD"
+  )
+}</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_31369"/>
+    </history>
+</contentHaul>

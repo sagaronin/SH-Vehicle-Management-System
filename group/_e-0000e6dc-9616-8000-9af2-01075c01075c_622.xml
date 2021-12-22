@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_881</versionUuid>
+    <group>
+        <name>SH Administrators</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_622</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>This is an admin group</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_622</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet/>
+    <history>
+        <historyInfo versionUuid="_e-0000e6dc-9616-8000-9af2-01075c01075c_881"/>
+    </history>
+</groupHaul>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>16f1ff20-b59f-4c3c-bc4d-89d5302d3164</versionUuid>
+    <tempoReport a:uuid="ed674652-7a5f-488e-92a9-2722e9aa3e4a" name="SH Column Grid Vehicle By Av Type">
+        <a:description>This is report object pointing to interface we created for ColumnGridVehByAvType</a:description>
+        <a:uiExpr>=#"_a-0000e6dc-9616-8000-9ba5-011c48011c48_39977"()</a:uiExpr>
+        <a:urlStub>ZqyrWg</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_622</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_626</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="16f1ff20-b59f-4c3c-bc4d-89d5302d3164"/>
+    </history>
+</tempoReportHaul>

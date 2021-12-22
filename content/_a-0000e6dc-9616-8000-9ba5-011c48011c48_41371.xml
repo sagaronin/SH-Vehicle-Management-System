@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_50548</versionUuid>
+    <rule>
+        <name>SH_VM_VehicleMaintainence</name>
+        <uuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_41371</uuid>
+        <description>This is an interface used for capturing vehicle maintenance data</description>
+        <parentUuid>_a-0000e6dc-9616-8000-9ba5-011c48011c48_23736</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!addedBy: if(
+    isnull(ri!service_vehicle.reqAddedBy),
+    loggedInUser(),
+    ri!service_vehicle.reqAddedBy
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Submit Maintenance Request",
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Vehicle Details",
+        contents: {
+          #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_23741"(
+            #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_20493"(ri!service_vehicle.vehicleid)
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Maintenance Details",
+        contents: {
+          #"SYSTEM_SYSRULES_sideBySideLayout"(
+            items: {
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_dropdownField_v1"(
+                  label: "Service Type",
+                  labelPosition: "ABOVE",
+                  placeholder: "Select Service Type",
+                  choiceLabels: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_41365",
+                  choiceValues: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_41365",
+                  value: ri!service_vehicle.serviceType,
+                  saveInto: ri!service_vehicle.serviceType,
+                  searchDisplay: "AUTO",
+                  validations: {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_sideBySideItem"(
+                item: #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                  label: "Request Added By",
+                  labelPosition: "ABOVE",
+                  groupFilter: #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_24051",
+                  value: local!addedBy,
+                  saveInto: ri!service_vehicle.reqAddedBy,
+                  readOnly: true,
+                  validations: {}
+                )
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            label: "Maintenance Description",
+            labelPosition: "ABOVE",
+            saveInto: ri!service_vehicle.description,
+            refreshAfter: "UNFOCUS",
+            height: "MEDIUM",
+            validations: {}
+          )
+        }
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Submit",
+          submit: true,
+          style: "PRIMARY",
+          loadingIndicator: true
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Cancel",
+          value: true,
+          saveInto: {},
+          submit: true,
+          style: "NORMAL",
+          validate: false
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>service_vehicle</name>
+            <type>
+                <name>sh_df_vm_vehicle_maintenance</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000e6dc-9616-8000-9ba5-011c48011c48_20493"(2)</a:value>
+                    <a:nameRef>service_vehicle</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e6dc-9616-8000-9ba5-011c48011c48_50548"/>
+    </history>
+</contentHaul>

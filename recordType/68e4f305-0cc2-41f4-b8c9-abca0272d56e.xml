@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>552b5e16-7fa3-4ac8-9f65-264cc1f79f73</versionUuid>
+  <recordType a:uuid="68e4f305-0cc2-41f4-b8c9-abca0272d56e" name="SH VM Service Vehicle">
+    <a:pluralName>SH VM Service Vehicles</a:pluralName>
+    <a:description>This is the record type for vehicle maintenance with the service table as its source</a:description>
+    <a:urlStub>vpT41Q</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Cost",
+      sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/a8bac7b3-39f1-4f2e-9b55-d96e79a633e1",
+      value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/a8bac7b3-39f1-4f2e-9b55-d96e79a633e1"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Service Type",
+      sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/187c5d2e-e5af-46a2-8e94-3f0091c004e9",
+      value: #"SYSTEM_SYSRULES_linkField"(
+        links: {
+          #"SYSTEM_SYSRULES_recordLink"(
+            label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/187c5d2e-e5af-46a2-8e94-3f0091c004e9"],
+            recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+            identifier: fv!identifier
+          )
+        }
+      ),
+      align: "START"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Request Added On",
+      sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/f26a9b6f-4eee-4497-8df1-b955385ff517",
+      value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/f26a9b6f-4eee-4497-8df1-b955385ff517"],
+      align: "START"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Make, Model, Year",
+      value: #"SYSTEM_SYSRULES_linkField"(
+        links: {
+          #"SYSTEM_SYSRULES_recordLink"(
+            label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/32f47faa-e26a-42a4-8b8c-c2f181e44f67"],
+            recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+            identifier: fv!identifier
+          ),
+          #"SYSTEM_SYSRULES_recordLink"(
+            label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/a8c555c0-2c2d-407a-8f01-4a38440a227d"],
+            recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+            identifier: fv!identifier
+          ),
+          #"SYSTEM_SYSRULES_recordLink"(
+            label: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/f5cbf3b9-efe3-4477-9820-18a07103700b"],
+            recordType: #"urn:appian:record-type:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e",
+            identifier: fv!identifier
+          )
+        }
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Mechanic Name",
+      sortField: #"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/c368442d-6677-4f63-905c-ef341919d730",
+      value: fv!row[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/c368442d-6677-4f63-905c-ef341919d730"],
+      align: "START"
+    )
+  },
+  pageSize: 50,
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:fieldCfg a:uuid="6c169ebf-f450-4ca5-8592-508cd64ba45e" name="Service Type">
+      <a:description/>
+      <a:sourceRef>187c5d2e-e5af-46a2-8e94-3f0091c004e9</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Service Type"</a:facetLabelExpr>
+      <a:facetExpr/>
+      <a:facetOption>
+        <a:labelExpr>"Manufacturer Service"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>"Manufacturer Service"</a:values>
+      </a:facetOption>
+      <a:facetOption>
+        <a:labelExpr>"Full Service"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>"Full Service"
+</a:values>
+      </a:facetOption>
+      <a:facetOption>
+        <a:labelExpr>"Essential Car Care"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>"Essential Car Care"</a:values>
+      </a:facetOption>
+      <a:facetOption>
+        <a:labelExpr>"Interim Service"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>"Interim Service"</a:values>
+      </a:facetOption>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e6dc-9616-8000-9ba5-011c48011c48_50556"(record: rv!record)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Vehicle Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e6dc-9616-8000-9ba5-011c48011c48_23741"(
+  #"_a-0000e6dc-9616-8000-9ba5-011c48011c48_20493"(
+    rv!identifier
+  )
+)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_6L3lAw</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    </a:detailViewCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/32f47faa-e26a-42a4-8b8c-c2f181e44f67"] &amp;
+" "&amp;
+rv!record[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/a8c555c0-2c2d-407a-8f01-4a38440a227d"]&amp; 
+" "&amp;
+rv!record[#"urn:appian:record-field:v1:68e4f305-0cc2-41f4-b8c9-abca0272d56e/30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8/f5cbf3b9-efe3-4477-9820-18a07103700b"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>false</a:hideNewsView>
+    <a:hideRelatedActionsView>false</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordRelationshipCfg>
+      <uuid>30bd73c0-cfb4-48a3-9a63-b8e4ab4394f8</uuid>
+      <relationshipName>vehicleToMaintenance</relationshipName>
+      <targetRecordTypeUuid>8fc17093-0b29-46c3-90d9-3265070b5c85</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"7d530067-6770-40d3-b991-4e1c2f7154ec","targetRecordTypeFieldUuid":"6e1c3678-fe7a-4566-a353-ba6bf20fdbad","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+    </a:recordRelationshipCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>sh_df_vm_vehicle_maintenance@jdbc/Appian</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <friendlyName>sh_df_vm_vehicle_maintenance</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>187c5d2e-e5af-46a2-8e94-3f0091c004e9</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>serviceType</sourceFieldName>
+        <sourceFieldType>LONGVARCHAR(65535)</sourceFieldType>
+        <fieldName>servicetype</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>a8bac7b3-39f1-4f2e-9b55-d96e79a633e1</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>cost</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>cost</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>0fed5e85-952d-441b-9771-40dafafaa00b</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>maintainance_id</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>maintainanceId</fieldName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>f26a9b6f-4eee-4497-8df1-b955385ff517</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Datetime</type>
+        <sourceFieldName>reqAddedOn</sourceFieldName>
+        <sourceFieldType>TIMESTAMP</sourceFieldType>
+        <fieldName>reqaddedon</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>c368442d-6677-4f63-905c-ef341919d730</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>reqServiceBy</sourceFieldName>
+        <sourceFieldType>LONGVARCHAR(65535)</sourceFieldType>
+        <fieldName>reqserviceby</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>fff3fdd1-cb77-4eed-891b-36250d138e80</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>description</sourceFieldName>
+        <sourceFieldType>LONGVARCHAR(65535)</sourceFieldType>
+        <fieldName>description</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>029c5361-78b3-4de3-94ca-14fc6c213b73</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>reqAddedBy</sourceFieldName>
+        <sourceFieldType>LONGVARCHAR(65535)</sourceFieldType>
+        <fieldName>reqaddedby</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>7d530067-6770-40d3-b991-4e1c2f7154ec</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>vehicle_id</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>vehicleId</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>1d4e5104-5263-409a-b43e-78659d36219b</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Datetime</type>
+        <sourceFieldName>reqServicedOn</sourceFieldName>
+        <sourceFieldType>TIMESTAMP</sourceFieldType>
+        <fieldName>reqservicedon</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <field>
+        <uuid>03c5ca55-ccc3-4b84-9a0f-5b12ded147a9</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>mechanicComments</sourceFieldName>
+        <sourceFieldType>LONGVARCHAR(65535)</sourceFieldType>
+        <fieldName>mechaniccomments</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+      </field>
+      <joinType>LEFT</joinType>
+      <uuid>6314d704-1b37-42fe-bd24-fb1438aefb3c</uuid>
+      <refreshSchedule>
+        <frequency>DAILY</frequency>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"GMT"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>31</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_622</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e6dc-9616-8000-9af2-01075c01075c_626</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="552b5e16-7fa3-4ac8-9f65-264cc1f79f73"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>
